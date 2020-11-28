@@ -1,15 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.byoskill.sonar.slack</groupId>
-  <artifactId>sonar-slack-notifier</artifactId>
-  <version>8.0.0-beta</version>
+  <groupId>se.denacode.sonar.plugin</groupId>
+  <artifactId>sonar-teams-notifier</artifactId>
+  <version>8.5.0-beta</version>
   <packaging>sonar-plugin</packaging>
 
-  <name>Sonar Slack Notifier Plugin</name>
-  <description>Sends notifications to Slack.</description>
+  <name>Sonar Teams Notifier Plugin</name>
+  <description>Sends notifications to Microsoft Teams.</description>
 
   <properties>
-    <sonar.pluginName>Slack Notifier</sonar.pluginName>
+    <sonar.pluginName>Teams Notifier</sonar.pluginName>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -23,17 +24,17 @@
     <jacoco.version>0.8.5</jacoco.version>
 
     <!-- JaCoCo support -->
-    <argLine />
-    <sonar.version>8.0</sonar.version>
+    <argLine/>
+    <sonar.version>8.5.0.37579</sonar.version>
     <jackson-databind.version>2.10.1</jackson-databind.version>
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</connection>
-    <url>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</url>
-    <developerConnection>scm:git:git@github.com:sleroy/sonar-slack-notifier-plugin.git</developerConnection>
+    <connection>scm:git:git@github.com:jonas-lindmark/sonar-slack-notifier-plugin.git</connection>
+    <url>scm:git:git@github.com:jonas-lindmark/sonar-slack-notifier-plugin.git</url>
+    <developerConnection>scm:git:git@github.com:jonas-lindmark/sonar-slack-notifier-plugin.git</developerConnection>
   </scm>
-  
+
 
   <dependencies>
     <!-- Dependencies provided by SonarQube server -->
@@ -51,11 +52,6 @@
     </dependency>
 
     <!-- Dependencies of this plugin, not provided by SonarQube -->
-    <dependency>
-      <groupId>com.github.seratch</groupId>
-      <artifactId>jslack</artifactId>
-      <version>3.3.0</version>
-    </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
@@ -90,11 +86,6 @@
       <version>${sonar.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.10</version>
-    </dependency>
 
 
     <dependency>
@@ -114,6 +105,11 @@
       <artifactId>jackson-databind</artifactId>
       <version>${jackson-databind.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.6</version>
     </dependency>
 
 
@@ -137,17 +133,17 @@
         <version>1.18.0.372</version>
         <extensions>true</extensions>
         <configuration>
-          <jarName>sonar-slack-notifier-${project.version}</jarName>
-          <pluginKey>sonar-slack-notifier</pluginKey>
-          <pluginClass>com.koant.sonar.slacknotifier.SlackNotifierPlugin</pluginClass>
-          <pluginName>Sonar Slack Notifier</pluginName>
-          <pluginDescription>Sends notifications to Slack</pluginDescription>
+          <jarName>sonar-teams-notifier-${project.version}</jarName>
+          <pluginKey>sonar-teams-notifier</pluginKey>
+          <pluginClass>se.denacode.sonar.plugin.teamsnotifier.TeamsNotifierPlugin</pluginClass>
+          <pluginName>Sonar Teams Notifier</pluginName>
+          <pluginDescription>Sends notifications to Microsoft Teams</pluginDescription>
           <sonarQubeMinVersion>8.0</sonarQubeMinVersion>
-          <pluginUrl>https://github.com/sleroy/sonar-slack-notifier-plugin</pluginUrl>
-          <pluginIssueTrackerUrl>https://github.com/sleroy/sonar-slack-notifier-plugin/issues</pluginIssueTrackerUrl>
-          <pluginSourcesUrl>https://github.com/sleroy/sonar-slack-notifier-plugin</pluginSourcesUrl>
-          <pluginOrganizationName>Sylvain Leroy</pluginOrganizationName>
-          <pluginOrganizationUrl>https://github.com/sleroy</pluginOrganizationUrl>
+          <pluginUrl>https://github.com/jonas-lindmark/sonar-slack-notifier-plugin</pluginUrl>
+          <pluginIssueTrackerUrl>https://github.com/jonas-lindmark/sonar-slack-notifier-plugin/issues</pluginIssueTrackerUrl>
+          <pluginSourcesUrl>https://github.com/jonas-lindmark/sonar-slack-notifier-plugin</pluginSourcesUrl>
+          <pluginOrganizationName>Jonas Lindmark</pluginOrganizationName>
+          <pluginOrganizationUrl>https://github.com/jonas-lindmark</pluginOrganizationUrl>
         </configuration>
       </plugin>
     </plugins>
